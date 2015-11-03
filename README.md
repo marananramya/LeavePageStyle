@@ -1,1 +1,2 @@
-# LeavePageStyle
+# leave-management
+Leave tracking app
