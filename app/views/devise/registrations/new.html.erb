@@ -12,8 +12,12 @@
         <%= f.text_field :name, class: "form-control" %>
         </div>
         <div class="field">
+        <%= f.label :date_of_joining %><br />
+        <%= f.text_field :date_of_joining, class: "form-control", id:"datepicker" %>
+        </div>
+        <div class="field">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+        <%= f.email_field :email, autofocus: true, class: "form-control", id:"day" %>
         </div>
         <div class="field">
         <%= f.label :password %>
@@ -33,3 +37,8 @@
       <%= render "devise/shared/links" %>
   </div>
 </div>
+<script type="text/javascript">
+  $(function() {    
+    $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });  
+   }); 
+</script>

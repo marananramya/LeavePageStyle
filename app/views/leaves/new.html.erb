@@ -16,6 +16,11 @@
 		     	<%= f.label :type_of_leave %>
 		      	<%= f.select :type_of_leave, ["Sick Leave", "Planned Leave" ,"Casual Leave"],:prompt=>"select", id: "dropdown" %>
 	      	<% end %>
+	      	
+			<%= f.text_field :sickleave, id: "sl" %><br />
+			<%= f.text_field :plannedleave, id: "pl" %><br />
+			<%= f.text_field :casualleave, id: "cl" %><br />
+			
 	        <%= f.label :reason %>
 		    <%= f.text_field :reason %><br />
 		    <%= f.submit "Save", class: "btn btn-primary", id:"sign" %>
@@ -25,24 +30,36 @@
 </div>
 <script type="text/javascript">
 $(document).ready( function() {
-  $('.datepicker').datepicker({
-  	
-  });
-
+  $('.datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
 $("#btn").mouseenter(function(){
-	var a = (daydiff(parseDate($('#first').val()), parseDate($('#second').val())));
-	$("#btn").val(a);
+    var a = $('#first').val();
+ var b = $('#second').val();
+ var c = a.split('-')
+ var d = b.split('-')
+ var e = d[0]-c[0]
+ 
+    $("#btn").val(e);
 }); 
-    
-    function parseDate(str) {
-    var mdy = str.split('/');
-    return new Date(mdy[2], mdy[0]-1, mdy[1]);
-    alert(mdy);
-}
-
-function daydiff(first, second) {
-    return (second-first)/(1000*60*60*24);
-}
-
 });
+
+$(document).ready( function() {
+	$("#sl").mouseenter(function(){
+	var date = gon.date;
+	
+   	var d = date.split('-')
+   	var e = d[2];
+   	
+   	if (e <= 15)
+   	{
+   	  leave = 1;
+   	}
+   	else{
+   	 leave = 0.5;
+   	}
+   	$("#sl").val(leave);
+   	$("#pl").val(leave);
+   	$("#cl").val(leave);
+   
+});
+ });
 </script>
